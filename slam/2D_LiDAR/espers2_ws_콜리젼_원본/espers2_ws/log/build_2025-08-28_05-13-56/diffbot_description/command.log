@@ -1,0 +1,4 @@
+Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description
+Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description

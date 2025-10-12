@@ -1,0 +1,20 @@
+scan_filter:
+  ros__parameters:
+    # 1) 앞쪽(-1.5 ~ +1.5 rad)을 '제거'해서 뒤쪽만 남김
+    filter1:
+      name: rear_180
+      type: "laser_filters/LaserScanAngularBoundsFilterInPlace"
+      params:
+        lower_angle: -1.5    # 약 -86°
+        upper_angle:  1.5    # 약 +86°
+    # 2) (선택) NaN/inf 를 깔끔히 날리고 싶다면 범위 필터 추가
+    filter2:
+      name: drop_inf
+      type: "laser_filters/LaserScanRangeFilter"
+      params:
+        use_message_range_limits: false
+        lower_threshold: 0.3
+        upper_threshold: .inf
+        lower_replacement_value: .inf
+        upper_replacement_value: .inf
+

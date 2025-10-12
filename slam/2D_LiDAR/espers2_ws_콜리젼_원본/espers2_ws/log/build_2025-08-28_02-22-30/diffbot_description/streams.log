@@ -1,0 +1,195 @@
+[0.039s] Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/tim3145/espers2_ws/src/diffbot_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/tim3145/espers2_ws/install/diffbot_description
+[0.174s] -- The C compiler identification is GNU 11.4.0
+[0.352s] -- The CXX compiler identification is GNU 11.4.0
+[0.374s] -- Detecting C compiler ABI info
+[0.577s] -- Detecting C compiler ABI info - done
+[0.606s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.609s] -- Detecting C compile features
+[0.609s] -- Detecting C compile features - done
+[0.620s] -- Detecting CXX compiler ABI info
+[0.832s] -- Detecting CXX compiler ABI info - done
+[0.859s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.860s] -- Detecting CXX compile features
+[0.862s] -- Detecting CXX compile features - done
+[0.869s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.283s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.466s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.542s] -- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)
+[1.666s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.682s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.709s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.752s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.811s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.982s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.990s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[2.195s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[2.251s] -- Found FastRTPS: /opt/ros/humble/include  
+[2.326s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.343s] -- Looking for pthread.h
+[2.486s] -- Looking for pthread.h - found
+[2.487s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.646s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[2.651s] -- Found Threads: TRUE  
+[2.809s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[2.841s] -- Found nav_msgs: 4.2.4 (/opt/ros/humble/share/nav_msgs/cmake)
+[2.875s] -- Found sensor_msgs: 4.2.4 (/opt/ros/humble/share/sensor_msgs/cmake)
+[2.912s] -- Found tf2: 0.25.7 (/opt/ros/humble/share/tf2/cmake)
+[2.933s] -- Found tf2_ros: 0.25.7 (/opt/ros/humble/share/tf2_ros/cmake)
+[3.166s] -- Found gazebo_ros: 3.7.0 (/opt/ros/humble/share/gazebo_ros/cmake)
+[3.198s] -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+[3.209s] -- Checking for module 'bullet>=2.82'
+[3.277s] --   Found bullet, version 3.05
+[3.966s] -- Found fcl: /usr/include (found suitable version "0.7.0", minimum required is "0.5.0") 
+[4.375s] -- Found assimp: /usr/include (found version "5.2.0") 
+[4.520s] -- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+[4.778s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time 
+[4.955s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[5.005s] -- Looking for ignition-math6 -- found version 6.15.1
+[5.042s] -- Searching for dependencies of ignition-math6
+[5.049s] -- Looking for OGRE...
+[5.058s] -- OGRE_PREFIX_WATCH changed.
+[5.092s] -- Checking for module 'OGRE'
+[5.194s] --   Found OGRE, version 1.9.0
+[5.404s] -- Found Ogre Ghadamon (1.9.0)
+[5.478s] -- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so
+[5.544s] -- Looking for OGRE_Paging...
+[5.612s] -- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so
+[5.612s] -- Looking for OGRE_Terrain...
+[5.678s] -- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+[5.678s] -- Looking for OGRE_Property...
+[5.744s] -- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so
+[5.745s] -- Looking for OGRE_RTShaderSystem...
+[5.810s] -- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so
+[5.810s] -- Looking for OGRE_Volume...
+[5.883s] -- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so
+[5.892s] -- Looking for OGRE_Overlay...
+[5.965s] -- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so
+[7.478s] -- Looking for ignition-math6 -- found version 6.15.1
+[7.500s] -- Looking for ignition-transport8 -- found version 8.2.1
+[7.500s] -- Searching for dependencies of ignition-transport8
+[7.736s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+[7.861s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[7.916s] -- Checking for module 'libzmq >= 4'
+[8.067s] --   Found libzmq , version 4.3.4
+[8.281s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[8.318s] -- Checking for module 'uuid'
+[8.374s] --   Found uuid, version 2.37.2
+[8.538s] -- Found UUID: TRUE  
+[8.556s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[8.556s] -- Searching for dependencies of ignition-msgs5
+[8.659s] -- Looking for ignition-math6 -- found version 6.15.1
+[8.678s] -- Checking for module 'tinyxml2'
+[8.709s] --   Found tinyxml2, version 9.0.0
+[8.796s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[8.802s] -- Looking for ignition-common3 -- found version 3.14.0
+[8.804s] -- Searching for dependencies of ignition-common3
+[8.805s] -- Looking for dlfcn.h - found
+[8.808s] -- Looking for libdl - found
+[8.814s] -- Found DL: TRUE  
+[8.881s] -- Found tinyobjloader: /usr/lib/x86_64-linux-gnu/cmake/tinyobjloader/tinyobjloader-config.cmake (found version "2.0.0") 
+[8.883s] -- Searching for <ignition-common3> component [graphics]
+[8.908s] -- Looking for ignition-common3-graphics -- found version 3.14.0
+[8.909s] -- Searching for dependencies of ignition-common3-graphics
+[8.910s] -- Looking for ignition-math6 -- found version 6.15.1
+[8.933s] -- Looking for ignition-fuel_tools4 -- found version 4.4.0
+[8.936s] -- Searching for dependencies of ignition-fuel_tools4
+[9.274s] -- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  
+[9.337s] -- Checking for module 'jsoncpp'
+[9.402s] --   Found jsoncpp, version 1.9.5
+[9.582s] -- Found JSONCPP: TRUE  
+[9.596s] -- Checking for module 'libzip'
+[9.639s] --   Found libzip, version 1.7.3
+[9.725s] -- Found ZIP: TRUE  
+[9.725s] -- Looking for ignition-common3 -- found version 3.14.0
+[9.729s] -- Looking for ignition-math6 -- found version 6.15.1
+[9.729s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[9.738s] -- Gazebo version: 11.10
+[9.740s] -- Checking for module 'tbb'
+[9.776s] --   Found tbb, version 2021.5.0
+[9.866s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[10.100s] -- Added test 'flake8' to check Python code syntax and style conventions
+[10.104s] -- Added test 'lint_cmake' to check CMake code style
+[10.107s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[10.125s] -- Added test 'xmllint' to check XML markup files
+[10.135s] -- Configuring done
+[10.173s] -- Generating done
+[10.195s] -- Build files have been written to: /home/tim3145/espers2_ws/build/diffbot_description
+[10.273s] Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/tim3145/espers2_ws/src/diffbot_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/tim3145/espers2_ws/install/diffbot_description
+[10.275s] Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+[10.495s] Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+[10.643s] Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description
+[10.682s] -- Install configuration: ""
+[10.682s] -- Execute custom install script
+[10.683s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/launch/localization.launch.py
+[10.727s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/launch/mapping.launch.py
+[10.751s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/launch/real_robot_mapping.launch.py
+[10.792s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/launch/real_robot_navigation.launch.py
+[10.833s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/urdf/driving_robot.urdf
+[10.871s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/urdf/driving_robot_play.urdf
+[10.903s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/rviz/diffbot2.rviz
+[10.936s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/world/test.world
+[10.968s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/costmap_common.yaml
+[11.010s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/laser_filter.yaml
+[11.051s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/localization_params.yaml
+[11.090s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/map.data
+[11.123s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/map.pgm
+[11.162s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/map.posegraph
+[11.190s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/map.yaml
+[11.236s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/mapp.zip
+[11.277s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/mapping_params.yaml
+[11.320s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/nav2_params.yaml
+[11.345s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/config/real_robot_mapping_params.yaml
+[11.372s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/base_link.stl
+[11.416s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/camera.stl
+[11.436s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FL_direction_1.stl
+[11.464s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FL_wheel_1.stl
+[11.496s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FR_direction_1.stl
+[11.527s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FR_wheel_1.stl
+[11.571s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/RL_wheel_1.stl
+[11.595s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/RR_wheel_1.stl
+[11.636s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/base_link.stl
+[11.655s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FL_direction_2.stl
+[11.678s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FL_wheel_2.stl
+[11.698s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FR_direction_2.stl
+[11.718s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FR_wheel_2.stl
+[11.740s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/RL_wheel_2.stl
+[11.761s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/RR_wheel_2.stl
+[11.784s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/base_link_2.stl
+[11.804s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/lidar.stl
+[11.825s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/new_wheel_left.stl
+[11.845s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/new_wheel_right.stl
+[11.867s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/ament_index/resource_index/package_run_dependencies/diffbot_description
+[11.890s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/ament_index/resource_index/parent_prefix_path/diffbot_description
+[11.916s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/environment/ament_prefix_path.sh
+[11.938s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/environment/ament_prefix_path.dsv
+[11.959s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/environment/path.sh
+[11.983s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/environment/path.dsv
+[12.004s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/local_setup.bash
+[12.024s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/local_setup.sh
+[12.046s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/local_setup.zsh
+[12.067s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/local_setup.dsv
+[12.094s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.dsv
+[12.114s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/ament_index/resource_index/packages/diffbot_description
+[12.135s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/cmake/diffbot_descriptionConfig.cmake
+[12.155s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/cmake/diffbot_descriptionConfig-version.cmake
+[12.180s] -- Symlinking: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.xml
+[12.203s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/base_link.stl
+[12.203s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/camera.stl
+[12.204s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FL_direction_1.stl
+[12.205s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FL_wheel_1.stl
+[12.205s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FR_direction_1.stl
+[12.206s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/FR_wheel_1.stl
+[12.207s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/RL_wheel_1.stl
+[12.207s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/RR_wheel_1.stl
+[12.208s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/base_link.stl
+[12.209s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FL_direction_2.stl
+[12.210s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FL_wheel_2.stl
+[12.210s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FR_direction_2.stl
+[12.211s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/FR_wheel_2.stl
+[12.213s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/RL_wheel_2.stl
+[12.213s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/RR_wheel_2.stl
+[12.214s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/legacy_from_main_description/collision_stl_file/base_link_2.stl
+[12.215s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/lidar.stl
+[12.216s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/new_wheel_left.stl
+[12.217s] -- Up-to-date symlink: /home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/meshes/new_wheel_right.stl
+[12.223s] Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description

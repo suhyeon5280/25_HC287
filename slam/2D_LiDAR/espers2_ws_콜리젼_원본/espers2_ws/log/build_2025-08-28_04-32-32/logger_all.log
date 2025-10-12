@@ -1,0 +1,339 @@
+[0.179s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.179s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x78cd13c6e1a0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x78cd13c6dcf0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x78cd13c6dcf0>>, mixin_verb=('build',))
+[0.489s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.489s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.489s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.489s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.489s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.489s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.489s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/tim3145/espers2_ws'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.508s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extensions ['ignore', 'ignore_ament_install']
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'ignore'
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'ignore_ament_install'
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extensions ['colcon_pkg']
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'colcon_pkg'
+[0.509s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extensions ['colcon_meta']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'colcon_meta'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extensions ['ros']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'ros'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extensions ['cmake', 'python']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'cmake'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'python'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extensions ['python_setup_py']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(robot_edit.ino) by extension 'python_setup_py'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.510s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.511s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extension 'ignore'
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extension 'ignore_ament_install'
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extensions ['colcon_pkg']
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extension 'colcon_pkg'
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extensions ['colcon_meta']
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extension 'colcon_meta'
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extensions ['ros']
+[0.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/arduino_bridge) by extension 'ros'
+[0.515s] DEBUG:colcon.colcon_core.package_identification:Package 'src/arduino_bridge' with type 'ros.catkin' and name 'arduino_bridge'
+[0.515s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extensions ['ignore', 'ignore_ament_install']
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extension 'ignore'
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extension 'ignore_ament_install'
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extensions ['colcon_pkg']
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extension 'colcon_pkg'
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extensions ['colcon_meta']
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extension 'colcon_meta'
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extensions ['ros']
+[0.516s] Level 1:colcon.colcon_core.package_identification:_identify(src/diffbot_description) by extension 'ros'
+[0.518s] DEBUG:colcon.colcon_core.package_identification:Package 'src/diffbot_description' with type 'ros.ament_cmake' and name 'diffbot_description'
+[0.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ignore'
+[0.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ignore_ament_install'
+[0.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['colcon_pkg']
+[0.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'colcon_pkg'
+[0.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['colcon_meta']
+[0.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'colcon_meta'
+[0.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['ros']
+[0.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ros'
+[0.520s] DEBUG:colcon.colcon_core.package_identification:Package 'src/rplidar_ros' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'ignore'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'ignore_ament_install'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['colcon_pkg']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'colcon_pkg'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['colcon_meta']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'colcon_meta'
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['ros']
+[0.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'ros'
+[0.521s] DEBUG:colcon.colcon_core.package_identification:Package 'src/sllidar_ros2' with type 'ros.ament_cmake' and name 'sllidar_ros2'
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.553s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.553s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.556s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 4 installed packages in /home/tim3145/espers2_ws/install
+[0.558s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 428 installed packages in /opt/ros/humble
+[0.575s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'cmake_args' from command line to 'None'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'cmake_target' from command line to 'None'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.657s] Level 5:colcon.colcon_core.verb:set package 'arduino_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.657s] DEBUG:colcon.colcon_core.verb:Building package 'arduino_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tim3145/espers2_ws/build/arduino_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tim3145/espers2_ws/install/arduino_bridge', 'merge_install': False, 'path': '/home/tim3145/espers2_ws/src/arduino_bridge', 'symlink_install': True, 'test_result_base': None}
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'cmake_args' from command line to 'None'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'cmake_target' from command line to 'None'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'diffbot_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.658s] DEBUG:colcon.colcon_core.verb:Building package 'diffbot_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tim3145/espers2_ws/build/diffbot_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tim3145/espers2_ws/install/diffbot_description', 'merge_install': False, 'path': '/home/tim3145/espers2_ws/src/diffbot_description', 'symlink_install': True, 'test_result_base': None}
+[0.658s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_args' from command line to 'None'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target' from command line to 'None'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.659s] DEBUG:colcon.colcon_core.verb:Building package 'rplidar_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tim3145/espers2_ws/build/rplidar_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tim3145/espers2_ws/install/rplidar_ros', 'merge_install': False, 'path': '/home/tim3145/espers2_ws/src/rplidar_ros', 'symlink_install': True, 'test_result_base': None}
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_args' from command line to 'None'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_target' from command line to 'None'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_clean_cache' from command line to 'False'
+[0.659s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_clean_first' from command line to 'False'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_force_configure' from command line to 'False'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'ament_cmake_args' from command line to 'None'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'catkin_cmake_args' from command line to 'None'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.660s] DEBUG:colcon.colcon_core.verb:Building package 'sllidar_ros2' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tim3145/espers2_ws/build/sllidar_ros2', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tim3145/espers2_ws/install/sllidar_ros2', 'merge_install': False, 'path': '/home/tim3145/espers2_ws/src/sllidar_ros2', 'symlink_install': True, 'test_result_base': None}
+[0.660s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.661s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.661s] INFO:colcon.colcon_ros.task.catkin.build:Building ROS package in '/home/tim3145/espers2_ws/src/arduino_bridge' with build type 'catkin'
+[0.662s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/tim3145/espers2_ws/src/arduino_bridge'
+[0.666s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.666s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.666s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.672s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/tim3145/espers2_ws/src/diffbot_description' with build type 'ament_cmake'
+[0.672s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/tim3145/espers2_ws/src/diffbot_description'
+[0.673s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.673s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.679s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/tim3145/espers2_ws/src/rplidar_ros' with build type 'ament_cmake'
+[0.680s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/tim3145/espers2_ws/src/rplidar_ros'
+[0.680s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.680s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.688s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/tim3145/espers2_ws/src/sllidar_ros2' with build type 'ament_cmake'
+[0.689s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/tim3145/espers2_ws/src/sllidar_ros2'
+[0.689s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.689s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.707s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/arduino_bridge': /usr/bin/cmake --build /home/tim3145/espers2_ws/build/arduino_bridge -- -j4 -l4
+[0.714s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+[0.721s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --build /home/tim3145/espers2_ws/build/rplidar_ros -- -j4 -l4
+[0.732s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/sllidar_ros2': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --build /home/tim3145/espers2_ws/build/sllidar_ros2 -- -j4 -l4
+[0.799s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/arduino_bridge' returned '0': /usr/bin/cmake --build /home/tim3145/espers2_ws/build/arduino_bridge -- -j4 -l4
+[0.820s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+[0.961s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description
+[0.970s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/arduino_bridge': /usr/bin/cmake --install /home/tim3145/espers2_ws/build/arduino_bridge
+[0.997s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/sllidar_ros2' returned '0': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --build /home/tim3145/espers2_ws/build/sllidar_ros2 -- -j4 -l4
+[1.004s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/arduino_bridge' returned '0': /usr/bin/cmake --install /home/tim3145/espers2_ws/build/arduino_bridge
+[1.009s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --build /home/tim3145/espers2_ws/build/rplidar_ros -- -j4 -l4
+[1.032s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(diffbot_description)
+[1.034s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description
+[1.040s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description' for CMake module files
+[1.041s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description' for CMake config files
+[1.042s] Level 1:colcon.colcon_core.shell:create_environment_hook('diffbot_description', 'cmake_prefix_path')
+[1.043s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/hook/cmake_prefix_path.ps1'
+[1.045s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/hook/cmake_prefix_path.dsv'
+[1.046s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/hook/cmake_prefix_path.sh'
+[1.049s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/bin'
+[1.049s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/lib/pkgconfig/diffbot_description.pc'
+[1.050s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/lib/python3.10/site-packages'
+[1.051s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/bin'
+[1.052s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.ps1'
+[1.054s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.dsv'
+[1.056s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.sh'
+[1.059s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.bash'
+[1.061s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.zsh'
+[1.064s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/diffbot_description/share/colcon-core/packages/diffbot_description)
+[1.068s] Level 1:colcon.colcon_core.shell:create_environment_hook('arduino_bridge', 'ros_package_path')
+[1.069s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/ros_package_path.ps1'
+[1.070s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/ros_package_path.dsv'
+[1.071s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/ros_package_path.sh'
+[1.072s] Level 1:colcon.colcon_core.shell:create_environment_hook('arduino_bridge', 'pkg_config_path')
+[1.073s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/pkg_config_path.ps1'
+[1.074s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/pkg_config_path.dsv'
+[1.075s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/pkg_config_path.sh'
+[1.080s] Level 1:colcon.colcon_core.shell:create_environment_hook('arduino_bridge', 'pkg_config_path_multiarch')
+[1.080s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/pkg_config_path_multiarch.ps1'
+[1.081s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/pkg_config_path_multiarch.dsv'
+[1.082s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/pkg_config_path_multiarch.sh'
+[1.088s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(arduino_bridge)
+[1.089s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge' for CMake module files
+[1.090s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge' for CMake config files
+[1.091s] Level 1:colcon.colcon_core.shell:create_environment_hook('arduino_bridge', 'cmake_prefix_path')
+[1.092s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/cmake_prefix_path.ps1'
+[1.093s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/cmake_prefix_path.dsv'
+[1.094s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/hook/cmake_prefix_path.sh'
+[1.095s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge/lib'
+[1.096s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge/bin'
+[1.096s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge/lib/pkgconfig/arduino_bridge.pc'
+[1.097s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge/lib/python3.10/site-packages'
+[1.097s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/arduino_bridge/bin'
+[1.099s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.ps1'
+[1.105s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.dsv'
+[1.107s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.sh'
+[1.108s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.bash'
+[1.109s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.zsh'
+[1.110s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/arduino_bridge/share/colcon-core/packages/arduino_bridge)
+[1.120s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(diffbot_description)
+[1.120s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description' for CMake module files
+[1.121s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description' for CMake config files
+[1.122s] Level 1:colcon.colcon_core.shell:create_environment_hook('diffbot_description', 'cmake_prefix_path')
+[1.123s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/hook/cmake_prefix_path.ps1'
+[1.123s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/hook/cmake_prefix_path.dsv'
+[1.124s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/hook/cmake_prefix_path.sh'
+[1.125s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/bin'
+[1.125s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/lib/pkgconfig/diffbot_description.pc'
+[1.126s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/lib/python3.10/site-packages'
+[1.127s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/diffbot_description/bin'
+[1.128s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.ps1'
+[1.129s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.dsv'
+[1.130s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.sh'
+[1.131s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.bash'
+[1.133s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/diffbot_description/share/diffbot_description/package.zsh'
+[1.134s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/diffbot_description/share/colcon-core/packages/diffbot_description)
+[1.139s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/sllidar_ros2': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --install /home/tim3145/espers2_ws/build/sllidar_ros2
+[1.154s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tim3145/espers2_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --install /home/tim3145/espers2_ws/build/rplidar_ros
+[1.189s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sllidar_ros2)
+[1.190s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2' for CMake module files
+[1.191s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/sllidar_ros2' returned '0': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --install /home/tim3145/espers2_ws/build/sllidar_ros2
+[1.193s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2' for CMake config files
+[1.194s] Level 1:colcon.colcon_core.shell:create_environment_hook('sllidar_ros2', 'cmake_prefix_path')
+[1.194s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.ps1'
+[1.195s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.dsv'
+[1.196s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.sh'
+[1.197s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/lib'
+[1.197s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/bin'
+[1.197s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/lib/pkgconfig/sllidar_ros2.pc'
+[1.198s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/lib/python3.10/site-packages'
+[1.198s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/bin'
+[1.199s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.ps1'
+[1.200s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.dsv'
+[1.201s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.sh'
+[1.202s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.bash'
+[1.203s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.zsh'
+[1.203s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/sllidar_ros2/share/colcon-core/packages/sllidar_ros2)
+[1.206s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[1.207s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros' for CMake module files
+[1.208s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tim3145/espers2_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=/home/tim3145/espers2_ws/install/sllidar_ros2:/home/tim3145/espers2_ws/install/rplidar_ros:/home/tim3145/espers2_ws/install/diffbot_description:/opt/ros/humble:/home/tim3145/espers2_ws/install/arduino_bridge /usr/bin/cmake --install /home/tim3145/espers2_ws/build/rplidar_ros
+[1.209s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros' for CMake config files
+[1.210s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[1.210s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[1.211s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[1.211s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[1.212s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/lib'
+[1.212s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/bin'
+[1.212s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[1.213s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/lib/python3.10/site-packages'
+[1.214s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/bin'
+[1.214s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[1.215s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[1.216s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[1.216s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[1.217s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[1.217s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[1.310s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sllidar_ros2)
+[1.310s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2' for CMake module files
+[1.311s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2' for CMake config files
+[1.312s] Level 1:colcon.colcon_core.shell:create_environment_hook('sllidar_ros2', 'cmake_prefix_path')
+[1.312s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.ps1'
+[1.313s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.dsv'
+[1.314s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.sh'
+[1.315s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/lib'
+[1.315s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/bin'
+[1.315s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/lib/pkgconfig/sllidar_ros2.pc'
+[1.316s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/lib/python3.10/site-packages'
+[1.316s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/sllidar_ros2/bin'
+[1.317s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.ps1'
+[1.318s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.dsv'
+[1.318s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.sh'
+[1.319s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.bash'
+[1.320s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/sllidar_ros2/share/sllidar_ros2/package.zsh'
+[1.320s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/sllidar_ros2/share/colcon-core/packages/sllidar_ros2)
+[1.325s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[1.326s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros' for CMake module files
+[1.326s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros' for CMake config files
+[1.327s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[1.327s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[1.328s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[1.328s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[1.329s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/lib'
+[1.329s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/bin'
+[1.329s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[1.330s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/lib/python3.10/site-packages'
+[1.330s] Level 1:colcon.colcon_core.environment:checking '/home/tim3145/espers2_ws/install/rplidar_ros/bin'
+[1.331s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[1.332s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[1.333s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[1.334s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[1.335s] INFO:colcon.colcon_core.shell:Creating package script '/home/tim3145/espers2_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[1.336s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tim3145/espers2_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[1.337s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.337s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.337s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.337s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.345s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.345s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.346s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.363s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.364s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tim3145/espers2_ws/install/local_setup.ps1'
+[1.366s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/tim3145/espers2_ws/install/_local_setup_util_ps1.py'
+[1.370s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tim3145/espers2_ws/install/setup.ps1'
+[1.373s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tim3145/espers2_ws/install/local_setup.sh'
+[1.373s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/tim3145/espers2_ws/install/_local_setup_util_sh.py'
+[1.374s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tim3145/espers2_ws/install/setup.sh'
+[1.376s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tim3145/espers2_ws/install/local_setup.bash'
+[1.376s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tim3145/espers2_ws/install/setup.bash'
+[1.378s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tim3145/espers2_ws/install/local_setup.zsh'
+[1.380s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tim3145/espers2_ws/install/setup.zsh'

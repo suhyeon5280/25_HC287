@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupilot - 로그인</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer;
+        }
+        
+        .btn-primary {
+            @apply bg-teal-400 hover:bg-teal-500 text-black;
+        }
+        
+        .card {
+            @apply bg-white rounded-lg shadow-sm border border-gray-200;
+        }
+        
+        .input {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app" class="max-w-md mx-auto bg-white min-h-screen">
+        <div class="p-4 pb-20">
+            <div class="space-y-6 pt-20">
+                <div class="text-center mb-8">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pupilot-oHZvmg4a1mRH2McyQSunVWhnKQ1EbG.png" alt="Pupilot" class="w-48 h-48 mx-auto mb-4" />
+                    <p class="text-gray-600">반려동물과 함께하는 건강한 산책</p>
+                </div>
+
+                <div class="card p-6 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">이메일</label>
+                        <input type="email" placeholder="이메일을 입력하세요" class="input" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">비밀번호</label>
+                        <input type="password" placeholder="비밀번호를 입력하세요" class="input" />
+                    </div>
+                    <a href="home.html" class="w-full bg-teal-400 hover:bg-teal-500 text-black rounded-full py-3 font-medium text-center block">
+                        로그인
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="text-teal-600 underline">계정이 없으신가요? 회원가입</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

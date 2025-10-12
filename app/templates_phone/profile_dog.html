@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupilot - 반려동물 편집</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer;
+        }
+        
+        .btn-primary {
+            @apply bg-teal-400 hover:bg-teal-500 text-black;
+        }
+        
+        .card {
+            @apply bg-white rounded-lg shadow-sm border border-gray-200;
+        }
+        
+        .input {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app" class="max-w-md mx-auto bg-white min-h-screen">
+        <div class="p-4 pb-20">
+            <div class="space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <a href="profile.html" class="p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </a>
+                    <h1 class="text-xl font-semibold">반려동물 편집</h1>
+                </div>
+
+                <div class="card p-6 space-y-4">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-teal-400 rounded-full flex items-center justify-center text-white text-2xl font-semibold">방</div>
+                        <button class="border border-gray-300 rounded-lg px-3 py-1 text-sm">사진 변경</button>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">이름</label>
+                        <input value="방방이" class="input" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">품종</label>
+                        <input value="골든 리트리버" class="input" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">나이</label>
+                        <input value="3" type="number" class="input" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">성별</label>
+                        <div class="flex gap-4">
+                            <button class="flex-1 bg-teal-400 text-black rounded-lg py-2 font-medium">수컷</button>
+                            <button class="flex-1 bg-transparent border border-gray-300 rounded-lg py-2 font-medium">암컷</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">체중 (kg)</label>
+                        <input placeholder="체중을 입력하세요" type="number" class="input" />
+                    </div>
+
+                    <a href="profile.html" class="w-full bg-teal-400 hover:bg-teal-500 text-black rounded-full py-3 font-medium text-center block">
+                        저장하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

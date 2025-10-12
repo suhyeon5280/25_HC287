@@ -1,0 +1,6 @@
+Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/tim3145/espers2_ws/src/diffbot_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/tim3145/espers2_ws/install/diffbot_description
+Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/tim3145/espers2_ws/src/diffbot_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/tim3145/espers2_ws/install/diffbot_description
+Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tim3145/espers2_ws/build/diffbot_description -- -j4 -l4
+Invoking command in '/home/tim3145/espers2_ws/build/diffbot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description
+Invoked command in '/home/tim3145/espers2_ws/build/diffbot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tim3145/espers2_ws/build/diffbot_description

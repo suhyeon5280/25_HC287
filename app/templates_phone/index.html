@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask Kakao Places Example</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 2rem; }
+.search-container { max-width: 400px; margin: 0 auto; position: relative; }
+.search-input { width: 100%; padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #ccc; }
+.search-results { position: absolute; top: 100%; left: 0; right: 0;
+                  background: white; border: 1px solid #ddd; border-top: none;
+                  max-height: 200px; overflow-y: auto; z-index: 10; display: none; }
+.search-result-item { padding: 0.5rem 1rem; cursor: pointer; border-bottom: 1px solid #eee; }
+.search-result-item:hover { background: #f7fafc; }
+</style>
+</head>
+<body>
+
+<h1 class="text-center mb-4">Flask + Kakao REST API</h1>
+
+<div class="search-container">
+    <input type="text" id="addressInput" class="search-input" placeholder="목적지를 검색하세요">
+    <div id="searchResults" class="search-results"></div>
+</div>
+
+<script>
+const addressInput = document.getElementById('addressInput');
+const searchResults = document.getElementById('searchResults');
+
+async function performSearch(query) {
+    query = query.trim();
+    if (!query) {
+        searchResults.style.display = 'none';
+        return;
+    }
+
+    try {
+        const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        renderSearchResults(data);
+    } catch (err) {
+        console.error('검색 오류:', err);
+        searchResults.style.display = 'none';
+    }
+}
+
+function renderSearchResults(results) {
+    searchResults.innerHTML = '';
+    if (!results.length) {
+        searchResults.style.display = 'none';
+        return;
+    }
+
+    results.forEach(r => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        item.textContent = r.place_name + (r.address_name ? ` (${r.address_name})` : '');
+        item.addEventListener('click', () => {
+            addressInput.value = r.place_name;
+            searchResults.style.display = 'none';
+            const destination = { name: r.place_name, lat: parseFloat(r.y), lng: parseFloat(r.x) };
+            localStorage.setItem('destination', JSON.stringify(destination));
+            console.log('선택된 목적지 저장:', destination);
+        });
+        searchResults.appendChild(item);
+    });
+    searchResults.style.display = 'block';
+}
+
+addressInput.addEventListener('input', (e) => performSearch(e.target.value));
+addressInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(e.target.value); });
+document.addEventListener('click', (e) => {
+    if (!addressInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = 'none';
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pupilot - 홈 (Flask 연동)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .hidden { display: none; }
+    .search-results {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background-color: white; border: 1px solid #e2e8f0;
+      border-top: none; border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      z-index: 10; max-height: 200px; overflow-y: auto;
+    }
+    .search-result-item {
+      padding: 12px; cursor: pointer; border-bottom: 1px solid #f0f0f0;
+    }
+    .search-result-item:hover { background-color: #f7fafc; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div id="app" class="max-w-md mx-auto bg-white min-h-screen">
+    <div class="p-4 pb-20">
+      <div class="space-y-6">
+        <div class="bg-teal-400 rounded-2xl p-6 text-center">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pupilot-logo-9jkjboTGvHXXxkQFDbjqxEAdNTI4e0.png"
+               alt="Pupilot" class="h-12 mx-auto mb-4" />
+
+          <div class="relative w-full mb-4">
+            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="addressInput"
+                   placeholder="원하는 목적지를 검색해주세요"
+                   class="pl-10 bg-white rounded-full w-full py-2 px-4"
+                   autocomplete="off" />
+            <div id="searchResults" class="search-results hidden"
+                 role="listbox" aria-label="검색 결과"></div>
+          </div>
+
+          <div class="flex gap-2 mt-4">
+            <button class="bg-white text-black hover:bg-gray-100 rounded-full px-3 py-1 text-sm">
+              <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+            </button>
+            <button class="bg-white text-black hover:bg-gray-100 rounded-full px-3 py-1 text-sm">집</button>
+            <a href="/navigation.html" class="bg-white text-black hover:bg-gray-100 rounded-full px-3 py-1 text-sm">공원</a>
+          </div>
+        </div>
+
+        <div class="card p-4">
+          <div class="flex justify-between items-center mb-4">
+            <button onclick="changeMonth(-1)" class="p-2 rounded-full hover:bg-gray-100">◀</button>
+            <div id="currentMonthYear" class="text-lg font-semibold"></div>
+            <button onclick="changeMonth(1)" class="p-2 rounded-full hover:bg-gray-100">▶</button>
+          </div>
+          <div class="grid grid-cols-7 gap-1 mb-2">
+            <div class="text-center text-sm font-medium text-red-500 py-2">SUN</div>
+            <div class="text-center text-sm font-medium py-2">MON</div>
+            <div class="text-center text-sm font-medium py-2">TUE</div>
+            <div class="text-center text-sm font-medium py-2">WED</div>
+            <div class="text-center text-sm font-medium py-2">THU</div>
+            <div class="text-center text-sm font-medium py-2">FRI</div>
+            <div class="text-center text-sm font-medium py-2">SAT</div>
+          </div>
+          <div id="calendarDays" class="grid grid-cols-7 gap-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottomNav" class="fixed bottom-0 left-1/2 transform -translate-x-1/2
+                               w-full max-w-md bg-teal-400 rounded-t-2xl">
+      <div class="flex justify-around py-3">
+        <a href="/report.html" class="flex flex-col items-center gap-1 text-black/70 hover:text-white">
+          📊
+        </a>
+        <a href="/home.html" class="flex flex-col items-center gap-1 text-white hover:text-white">
+          📅
+        </a>
+        <a href="/profile.html" class="flex flex-col items-center gap-1 text-black/70 hover:text-white">
+          👤
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const addressInput = document.getElementById('addressInput');
+    const searchResults = document.getElementById('searchResults');
+
+    // 🔹 Flask 서버에 검색 요청
+    async function performSearch(query) {
+      query = query.trim();
+      if (!query) {
+        searchResults.classList.add('hidden');
+        return;
+      }
+
+      try {
+        const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+        if (!res.ok) throw new Error('서버 오류');
+        const data = await res.json();
+        if (data.documents && data.documents.length > 0) {
+          renderSearchResults(data.documents.slice(0, 5));
+        } else {
+          searchResults.classList.add('hidden');
+        }
+      } catch (err) {
+        console.error('검색 실패:', err);
+        searchResults.classList.add('hidden');
+      }
+    }
+
+    // 🔹 검색 결과 표시
+    function renderSearchResults(results) {
+      searchResults.innerHTML = '';
+      results.forEach((result, idx) => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        item.setAttribute('role', 'option');
+        item.setAttribute('data-idx', idx);
+        item.textContent = `${result.place_name} (${result.address_name || ''})`;
+
+        item.addEventListener('click', () => {
+          addressInput.value = result.place_name;
+          searchResults.classList.add('hidden');
+          const destination = {
+            name: result.place_name,
+            lat: parseFloat(result.y),
+            lng: parseFloat(result.x)
+          };
+          localStorage.setItem('destination', JSON.stringify(destination));
+          window.location.href = '/navigation.html';
+        });
+
+        searchResults.appendChild(item);
+      });
+      searchResults.classList.remove('hidden');
+    }
+
+    // 이벤트
+    addressInput.addEventListener('input', e => performSearch(e.target.value));
+    addressInput.addEventListener('keyup', e => {
+      if (e.key === 'Enter') performSearch(e.target.value);
+    });
+    document.addEventListener('click', e => {
+      if (e.target !== addressInput && !searchResults.contains(e.target)) {
+        searchResults.classList.add('hidden');
+      }
+    });
+
+    // 달력
+    let today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+    let selectedDates = [
+      { year: 2025, month: 8, day: 6 },
+      { year: 2025, month: 8, day: 7 }
+    ];
+
+    function renderCalendar() {
+      const monthYearEl = document.getElementById('currentMonthYear');
+      const daysEl = document.getElementById('calendarDays');
+      const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+      const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      monthYearEl.innerHTML = `${currentYear}년 ${currentMonth + 1}월`;
+      daysEl.innerHTML = '';
+      for (let i = 0; i < firstDayOfMonth; i++) {
+        daysEl.innerHTML += `<div class="text-center py-2 text-sm text-gray-300"></div>`;
+      }
+      for (let day = 1; day <= lastDayOfMonth; day++) {
+        let dayClass = 'hover:bg-gray-100 rounded-lg cursor-pointer';
+        const isSelected = selectedDates.some(d => d.year === currentYear && d.month === currentMonth && d.day === day);
+        if (isSelected) dayClass = 'bg-teal-400 text-white rounded-lg';
+        daysEl.innerHTML += `<div class="text-center py-2 text-sm ${dayClass}">${day}</div>`;
+      }
+    }
+    function changeMonth(step) {
+      currentMonth += step;
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+      else if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+      renderCalendar();
+    }
+    window.onload = renderCalendar;
+  </script>
+</body>
+</html>

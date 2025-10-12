@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pupilot - 실시간 강아지 상태 (단일 페이지)</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5; margin: 0; padding: 1rem; display: flex; justify-content: center;
+    }
+    .container { width: 100%; max-width: 420px; }
+    .header { background-color: #5CBDBD; padding: 1.5rem; border-radius: 1rem; color: white; text-align: center; margin-bottom: 1rem; }
+    .video-section { background: white; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1rem; }
+    .report-title { font-size: 1.125rem; font-weight: bold; color: #374151; margin-bottom: 1rem; display: flex; align-items: center; }
+    .report-title span { margin-right: .5rem; }
+    .video-container { position: relative; background: black; border-radius: 0.75rem; overflow: hidden; margin-bottom: .75rem; }
+    .video-container video { width: 100%; height: 200px; display: block; }
+    .controls { display: flex; gap: .5rem; margin: .5rem 0 1rem 0; }
+    .btn { flex: 1; background: #5CBDBD; color: white; padding: .75rem 1rem; border: 0; border-radius: .75rem; font-weight: 600; cursor: pointer; }
+    .btn.stop { background: #6b7280; }
+    .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 0; }
+    .status-item { padding: 0.75rem; border-radius: 0.5rem; text-align: center; }
+    .status-item.mood { background: #f0fdf4; }
+    .status-item.activity { background: #eff6ff; }
+    .status-item.health { background: #fefce8; }
+    .status-emoji { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .status-label { font-size: 0.75rem; font-weight: 500; }
+    .status-label.green { color: #16a34a; }
+    .status-label.blue { color: #2563eb; }
+    .status-label.yellow { color: #ca8a04; }
+    .hidden { display: none; }
+  </style>
+  <!-- ONNX Runtime Web (WASM) -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div style="display:flex; align-items:center; justify-content:center; gap:.5rem;">
+        <span style="font-size:1.5rem;">📹</span><strong>실시간 강아지 상태</strong>
+      </div>
+    </div>
+
+    <div class="video-section">
+      <div class="report-title"><span>🎬</span> 로컬 영상</div>
+
+      <div class="video-container">
+        <!-- 로컬 동영상 임베드 (같은 폴더) -->
+        <video id="videoEl" controls preload="metadata" playsinline>
+          <source src="Screencast from 08-28-2025 01:18:23 AM.webm" type="video/webm">
+          이 브라우저는 HTML5 비디오를 지원하지 않습니다.
+        </video>
+      </div>
+
+      <!-- 분석 컨트롤 -->
+      <div class="controls">
+        <button id="btnStart" class="btn"  onclick="startAnalysis()">분석 시작</button>
+        <button id="btnStop"  class="btn stop" onclick="stopAnalysis()" disabled>분석 중지</button>
+      </div>
+
+      <!-- 상태 라벨 -->
+      <div class="status-grid">
+        <div class="status-item mood">
+          <div class="status-emoji">😊</div>
+          <div class="status-label green"  id="moodLabel">기분 좋음</div>
+        </div>
+        <div class="status-item activity">
+          <div class="status-emoji">🏃</div>
+          <div class="status-label blue"   id="activityLabel">활발함</div>
+        </div>
+        <div class="status-item health">
+          <div class="status-emoji">❤️</div>
+          <div class="status-label yellow" id="healthLabel">건강함</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 프레임 전처리용 히든 캔버스 (모델 입력 크기로 자동 조정) -->
+  <canvas id="frameCanvas" class="hidden" width="224" height="224"></canvas>
+
+  <script>
+    // ==== 경로/설정 ====
+    const MODEL_URL = 'dog_emotion_prior.onnx';  // 같은 폴더
+    const SAMPLE_MS = 500;                       // 추론 주기(ms)
+
+    // ==== 전역 상태 ====
+    let session = null, timer = null, IN_W = 224, IN_H = 224;
+
+    // ==== DOM ====
+    const videoEl    = document.getElementById('videoEl');
+    const moodEl     = document.getElementById('moodLabel');
+    const activityEl = document.getElementById('activityLabel');
+    const healthEl   = document.getElementById('healthLabel');
+    const canvas     = document.getElementById('frameCanvas');
+    const ctx        = canvas.getContext('2d');
+
+    // ==== 모델 로드 ====
+    async function loadModel() {
+      // (CDN 사용 시 wasm 파일 경로 지정해두면 안전)
+      ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/';
+      session = await ort.InferenceSession.create(MODEL_URL, {
+        executionProviders: ['wasm'], graphOptimizationLevel: 'all'
+      });
+
+      // 입력 크기 추정해서 캔버스 맞춤
+      const inMeta = session.inputMetadata[session.inputNames[0]];
+      const dims = inMeta?.dimensions || [1,3,224,224];
+      IN_H = dims[dims.length - 2] > 0 ? dims[dims.length - 2] : 224;
+      IN_W = dims[dims.length - 1] > 0 ? dims[dims.length - 1] : 224;
+      canvas.width = IN_W; canvas.height = IN_H;
+    }
+
+    // ==== 전처리: video → Float32 NCHW ====
+    function preprocess() {
+      ctx.drawImage(videoEl, 0, 0, IN_W, IN_H);
+      const rgba = ctx.getImageData(0, 0, IN_W, IN_H).data;
+      const plane = IN_W * IN_H;
+      const chw = new Float32Array(3 * plane);
+      let p = 0;
+      for (let y = 0; y < IN_H; y++) {
+        for (let x = 0; x < IN_W; x++) {
+          const i = (y * IN_W + x) * 4;
+          chw[p]          = rgba[i]   / 255; // R
+          chw[p + plane]  = rgba[i+1] / 255; // G
+          chw[p + 2*plane]= rgba[i+2] / 255; // B
+          p++;
+        }
+      }
+      const inputName = session.inputNames[0];
+      return { [inputName]: new ort.Tensor('float32', chw, [1,3,IN_H,IN_W]) };
+    }
+
+    // ==== 후처리: 예시 매핑 (모델 클래스에 맞게 바꾸세요) ====
+    function postprocess(outputs) {
+      const out = outputs[session.outputNames[0]];
+      const data = out.data;
+      let best = 0, max = -Infinity;
+      for (let i = 0; i < data.length; i++) if (data[i] > max) { max = data[i]; best = i; }
+
+      // ↓↓↓ 실제 클래스 순서에 맞게 수정하세요 ↓↓↓
+      const moodMap     = ['화남', '행복함', '편안함', '슬픔'];
+      const activityMap = ['보통'];
+      const healthMap   = ['양호'];
+
+      moodEl.textContent     = moodMap[best % moodMap.length];
+      activityEl.textContent = activityMap[(best+1) % activityMap.length];
+      healthEl.textContent   = healthMap[(best+2) % healthMap.length];
+    }
+
+    // ==== 루프 ====
+    async function tick() {
+      if (!session) return;
+      if (videoEl.readyState < 2) return; // 프레임 준비 전
+      const feeds = preprocess();
+      const outputs = await session.run(feeds);
+      postprocess(outputs);
+    }
+
+    // ==== 시작/중지 ====
+    async function startAnalysis() {
+      if (!session) await loadModel();
+      if (timer) return;
+      timer = setInterval(tick, SAMPLE_MS);
+      document.getElementById('btnStart').disabled = true;
+      document.getElementById('btnStop').disabled = false;
+    }
+    function stopAnalysis() {
+      if (timer) { clearInterval(timer); timer = null; }
+      document.getElementById('btnStart').disabled = false;
+      document.getElementById('btnStop').disabled = true;
+    }
+
+    // 전역 노출 (버튼에서 호출)
+    window.startAnalysis = startAnalysis;
+    window.stopAnalysis  = stopAnalysis;
+  </script>
+</body>
+</html>

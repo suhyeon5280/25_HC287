@@ -1,0 +1,4 @@
+Invoking command in '/home/tim3145/espers2_ws/build/arduino_bridge': /usr/bin/cmake --build /home/tim3145/espers2_ws/build/arduino_bridge -- -j4 -l4
+Invoked command in '/home/tim3145/espers2_ws/build/arduino_bridge' returned '0': /usr/bin/cmake --build /home/tim3145/espers2_ws/build/arduino_bridge -- -j4 -l4
+Invoking command in '/home/tim3145/espers2_ws/build/arduino_bridge': /usr/bin/cmake --install /home/tim3145/espers2_ws/build/arduino_bridge
+Invoked command in '/home/tim3145/espers2_ws/build/arduino_bridge' returned '0': /usr/bin/cmake --install /home/tim3145/espers2_ws/build/arduino_bridge

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pupilot - 홈 (Flask 연동)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .hidden { display: none; }
+    
+    /* ============================================== */
+    /* ✅ 16:9 비율 및 App 컨테이너 스타일 (유지) */
+    /* ============================================== */
+    #app-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        background-color: #f9fafb;
+    }
+    #app.aspect-16-9 {
+        width: 100vh;
+        max-width: 100vw;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        position: relative;
+        /* 기존 home.html의 배경색 유지 */
+        background-color: white; 
+    }
+    /* 미디어 쿼리 생략 (이전 코드를 기반으로 유지됨) */
+    
+    .search-results {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background-color: white; border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      z-index: 10; max-height: 200px; overflow-y: auto;
+    }
+    /* ============================================== */
+    /* ✅ 새로운 키보드 디자인 CSS (유지) */
+    /* ============================================== */
+    #customKeyboardContainer {
+        position: absolute; /* fixed 대신 absolute로 app 컨테이너 하단에 고정 */
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 98%; /* 16:9 화면 폭의 98% 사용 */
+        max-width: 600px; 
+        
+        background: #f0f0f0; /* 배경색 통일 */
+        box-shadow: 0 -6px 20px rgba(0,0,0,0.1);
+        border-radius: 12px 12px 0 0;
+        padding: 8px 6px; /* padding 조정 */
+        z-index: 99;
+    }
+
+    .keyboard-row {
+      display: flex;
+      justify-content: center;
+      gap: 4px; /* 간격 통일 */
+      margin-bottom: 4px;
+    }
+
+    .keyboard-key {
+      flex-grow: 1;
+      height: 52px; /* h-12와 유사하게 조정 */
+      border-radius: 8px; /* 모서리 부드럽게 */
+      background: linear-gradient(145deg, #ffffff, #f1f5f9);
+      border: 1px solid #d1d5db;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* 부드러운 그림자 */
+      font-size: 1.1rem; /* 폰트 크기 조정 */
+      font-weight: 600;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: all 0.12s ease-in-out;
+    }
+    .keyboard-key:active {
+      background: #e2e8f0;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      transform: scale(0.97);
+    }
+    .keyboard-key.func-key {
+      /* 앱 테마 컬러 (Teal) 사용 */
+      background: #2dd4bf; /* teal-400 */
+      color: black;
+      font-weight: 700;
+      border: 1px solid #0d9488;
+    }
+    .keyboard-key.func-key:active {
+      background: #0d9488; /* teal-700 */
+      color: white;
+    }
+    .keyboard-key.num-key {
+        background: #e5e7eb; /* gray-200 */
+        border: 1px solid #a1a1aa; /* gray-400 */
+    }
+
+    /* 키 비율 재조정 */
+    .keyboard-row:nth-child(3) { /* ASDFG 줄 들여쓰기 */
+        margin-left: 5%; 
+        width: 95%;
+    }
+    /* Function/Space Key 비율 설정 */
+    .keyboard-row:nth-child(5) .keyboard-key:nth-child(2) { /* Space */
+      flex-grow: 5.8; /* 기존 home.html의 Space 비율 유지 */
+      font-size: 1.1rem;
+    }
+    .keyboard-row:nth-child(5) .keyboard-key:first-child, /* Hide */
+    .keyboard-row:nth-child(5) .keyboard-key:last-child { /* Search */
+      flex-grow: 1.5; /* 기능 키 비율 유지 */
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div id="app-container">
+    <div id="app" class="bg-white min-h-screen aspect-16-9">
+      <div class="p-4 pb-20">
+        <div class="space-y-6">
+          <div class="bg-teal-400 rounded-2xl p-6 text-center">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pupilot-logo-9jkjboTGvHXXxkQFDbjqxEAdNTI4e0.png"
+                 alt="Pupilot" class="h-12 mx-auto mb-4" />
+
+            <div class="relative w-full mb-4">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"
+                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <input type="text" id="addressInput"
+                     placeholder="원하는 목적지를 검색해주세요"
+                     class="pl-10 bg-white rounded-full w-full py-2 px-4"
+                     autocomplete="off" readonly/> 
+              <div id="searchResults" class="search-results hidden"
+                   role="listbox" aria-label="검색 결과"></div>
+            </div>
+
+            <div class="flex gap-2 mt-4">
+              <button class="bg-white text-black hover:bg-gray-100 rounded-full px-3 py-1 text-sm">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </button>
+              <button class="bg-white text-black hover:bg-gray-100 rounded-full px-3 py-1 text-sm">집</button>
+              <a href="/navigation.html" class="bg-white text-black hover:bg-gray-100 rounded-full px-3 py-1 text-sm">공원</a>
+            </div>
+          </div>
+
+          <div class="card p-4">
+            <div class="flex justify-between items-center mb-4">
+              <button onclick="changeMonth(-1)" class="p-2 rounded-full hover:bg-gray-100">◀</button>
+              <div id="currentMonthYear" class="text-lg font-semibold"></div>
+              <button onclick="changeMonth(1)" class="p-2 rounded-full hover:bg-gray-100">▶</button>
+            </div>
+            <div class="grid grid-cols-7 gap-1 mb-2">
+              <div class="text-center text-sm font-medium text-red-500 py-2">SUN</div>
+              <div class="text-center text-sm font-medium py-2">MON</div>
+              <div class="text-center text-sm font-medium py-2">TUE</div>
+              <div class="text-center text-sm font-medium py-2">WED</div>
+              <div class="text-center text-sm font-medium py-2">THU</div>
+              <div class="text-center text-sm font-medium py-2">FRI</div>
+              <div class="text-center text-sm font-medium py-2">SAT</div>
+            </div>
+            <div id="calendarDays" class="grid grid-cols-7 gap-1"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="bottomNav" class="fixed bottom-0 left-1/2 transform -translate-x-1/2
+                                 w-full bg-teal-400 rounded-t-2xl">
+        <div class="flex justify-around py-3">
+          <a href="/report.html" class="flex flex-col items-center gap-1 text-black/70 hover:text-white">
+            📊
+          </a>
+          <a href="/home.html" class="flex flex-col items-center gap-1 text-white hover:text-white">
+            📅
+          </a>
+          <a href="/profile.html" class="flex flex-col items-center gap-1 text-black/70 hover:text-white">
+            👤
+          </a>
+        </div>
+      </div>
+      
+      <div id="customKeyboardContainer" class="hidden">
+        <div id="keyboard">
+          <div class="keyboard-row">
+            <button class="keyboard-key num-key" data-char="1" data-type="num">1</button>
+            <button class="keyboard-key num-key" data-char="2" data-type="num">2</button>
+            <button class="keyboard-key num-key" data-char="3" data-type="num">3</button>
+            <button class="keyboard-key num-key" data-char="4" data-type="num">4</button>
+            <button class="keyboard-key num-key" data-char="5" data-type="num">5</button>
+            <button class="keyboard-key num-key" data-char="6" data-type="num">6</button>
+            <button class="keyboard-key num-key" data-char="7" data-type="num">7</button>
+            <button class="keyboard-key num-key" data-char="8" data-type="num">8</button>
+            <button class="keyboard-key num-key" data-char="9" data-type="num">9</button>
+            <button class="keyboard-key num-key" data-char="0" data-type="num">0</button>
+          </div>
+
+          <div class="keyboard-row">
+            <button class="keyboard-key" data-char="q">q</button>
+            <button class="keyboard-key" data-char="w">w</button>
+            <button class="keyboard-key" data-char="e">e</button>
+            <button class="keyboard-key" data-char="r">r</button>
+            <button class="keyboard-key" data-char="t">t</button>
+            <button class="keyboard-key" data-char="y">y</button>
+            <button class="keyboard-key" data-char="u">u</button>
+            <button class="keyboard-key" data-char="i">i</button>
+            <button class="keyboard-key" data-char="o">o</button>
+            <button class="keyboard-key" data-char="p">p</button>
+          </div>
+
+          <div class="keyboard-row" style="margin-left: 5%; width: 95%;">
+            <button class="keyboard-key" data-char="a">a</button>
+            <button class="keyboard-key" data-char="s">s</button>
+            <button class="keyboard-key" data-char="d">d</button>
+            <button class="keyboard-key" data-char="f">f</button>
+            <button class="keyboard-key" data-char="g">g</button>
+            <button class="keyboard-key" data-char="h">h</button>
+            <button class="keyboard-key" data-char="j">j</button>
+            <button class="keyboard-key" data-char="k">k</button>
+            <button class="keyboard-key" data-char="l">l</button>
+          </div>
+
+          <div class="keyboard-row">
+            <button class="keyboard-key func-key" id="toggleLang" data-action="toggle" style="flex-grow: 1.5;">한/A</button>
+            <button class="keyboard-key" data-char="z">z</button>
+            <button class="keyboard-key" data-char="x">x</button>
+            <button class="keyboard-key" data-char="c">c</button>
+            <button class="keyboard-key" data-char="v">v</button>
+            <button class="keyboard-key" data-char="b">b</button>
+            <button class="keyboard-key" data-char="n">n</button>
+            <button class="keyboard-key" data-char="m">m</button>
+            <button class="keyboard-key func-key" data-action="backspace" style="flex-grow: 1.5;">DEL</button>
+          </div>
+
+          <div class="keyboard-row">
+            <button class="keyboard-key func-key" data-action="hide" style="flex-grow: 1.5;">숨기기</button>
+            <button class="keyboard-key" data-char=" " data-action="space" style="flex-grow: 5.8;">Space</button>
+            <button class="keyboard-key func-key" data-action="search" style="flex-grow: 1.5;">검색</button>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+
+  <script>
+    const addressInput = document.getElementById('addressInput');
+    const searchResults = document.getElementById('searchResults');
+    const keyboardContainer = document.getElementById('customKeyboardContainer');
+    const toggleLangButton = document.getElementById('toggleLang');
+    const keyButtons = document.querySelectorAll('#keyboard .keyboard-key[data-char]');
+    
+    let isKorean = true;
+    let currentInput = addressInput; 
+    
+    // ===============================================
+    // ✅ 한글 조합 로직 (유지)
+    // ===============================================
+    const CHOSEONG = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+    const JUNGSEONG = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', ['ㅗ', 'ㅏ'], ['ㅗ', 'ㅐ'], ['ㅗ', 'ㅣ'], 'ㅛ', 'ㅜ', ['ㅜ', 'ㅓ'], ['ㅜ', 'ㅔ'], ['ㅜ', 'ㅣ'], 'ㅠ', 'ㅡ', ['ㅡ', 'ㅣ'], 'ㅣ'];
+    const JONGSEONG = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+    
+    const HangulMap = {
+        'q': { kor: 'ㅂ', type: 'c' }, 'w': { kor: 'ㅈ', type: 'c' }, 'e': { kor: 'ㄷ', type: 'c' }, 'r': { kor: 'ㄱ', type: 'c' }, 't': { kor: 'ㅅ', type: 'c' },
+        'y': { kor: 'ㅛ', type: 'v' }, 'u': { kor: 'ㅕ', type: 'v' }, 'i': { kor: 'ㅑ', type: 'v' }, 'o': { kor: 'ㅐ', type: 'v' }, 'p': { kor: 'ㅔ', type: 'v' },
+        'a': { kor: 'ㅁ', type: 'c' }, 's': { kor: 'ㄴ', type: 'c' }, 'd': { kor: 'ㅇ', type: 'c' }, 'f': { kor: 'ㄹ', type: 'c' }, 'g': { kor: 'ㅎ', type: 'c' },
+        'h': { kor: 'ㅗ', type: 'v' }, 'j': { kor: 'ㅓ', type: 'v' }, 'k': { kor: 'ㅏ', type: 'v' }, 'l': { kor: 'ㅣ', type: 'v' },
+        'z': { kor: 'ㅋ', type: 'c' }, 'x': { kor: 'ㅌ', type: 'c' }, 'c': { kor: 'ㅊ', type: 'c' }, 'v': { kor: 'ㅍ', type: 'c' }, 'b': { kor: 'ㅠ', type: 'v' },
+        'n': { kor: 'ㅜ', type: 'v' }, 'm': { kor: 'ㅡ', type: 'v' },
+    };
+
+    const KorIndexMap = {
+        'ㄱ': 0, 'ㄲ': 1, 'ㄴ': 2, 'ㄷ': 3, 'ㄸ': 4, 'ㄹ': 5, 'ㅁ': 6, 'ㅂ': 7, 'ㅃ': 8, 'ㅅ': 9, 'ㅆ': 10, 'ㅇ': 11, 'ㅈ': 12, 'ㅉ': 13, 'ㅊ': 14, 'ㅋ': 15, 'ㅌ': 16, 'ㅍ': 17, 'ㅎ': 18,
+        'ㅏ': 0, 'ㅐ': 1, 'ㅑ': 2, 'ㅒ': 3, 'ㅓ': 4, 'ㅔ': 5, 'ㅕ': 6, 'ㅖ': 7, 'ㅗ': 8, 'ㅛ': 12, 'ㅜ': 13, 'ㅠ': 17, 'ㅡ': 18, 'ㅣ': 20,
+    };
+    
+    let composing = { chosung: -1, jungseong: -1, jongseong: -1 };
+    
+    function composeHangul() {
+        if (composing.chosung === -1) return '';
+        let charCode = 0xAC00;
+        charCode += composing.chosung * 588;
+        if (composing.jungseong !== -1) {
+            charCode += KorIndexMap[JUNGSEONG[composing.jungseong]] * 28;
+        } else {
+            return CHOSEONG[composing.chosung];
+        }
+        if (composing.jongseong !== -1) {
+            charCode += composing.jongseong;
+        }
+        return String.fromCharCode(charCode);
+    }
+    
+    function commitChar(char) {
+        currentInput.value += char;
+        composing = { chosung: -1, jungseong: -1, jongseong: -1 };
+        performSearch(currentInput.value);
+    }
+    
+    function processHangulInput(korChar) {
+        const charType = HangulMap[Object.keys(HangulMap).find(key => HangulMap[key].kor === korChar)]?.type;
+        if (!charType) return;
+        
+        const cIndex = CHOSEONG.indexOf(korChar);
+        const vIndex = JUNGSEONG.findIndex(j => j === korChar);
+        
+        if (charType === 'c') { // 자음 입력
+            if (composing.jungseong === -1) {
+                if (composing.chosung !== -1) commitChar(CHOSEONG[composing.chosung]);
+                composing.chosung = cIndex;
+            } else if (composing.jongseong === -1) {
+                const JongKey = JONGSEONG.indexOf(korChar);
+                if (JongKey !== -1) composing.jongseong = JongKey;
+                else { currentInput.value = currentInput.value.slice(0, -1) + composeHangul(); composing = { chosung: cIndex, jungseong: -1, jongseong: -1 }; }
+            } else {
+                currentInput.value = currentInput.value.slice(0, -1) + composeHangul();
+                composing = { chosung: cIndex, jungseong: -1, jongseong: -1 };
+            }
+        } else { // 모음 입력
+            if (composing.chosung === -1) commitChar(korChar);
+            else if (composing.jungseong === -1) composing.jungseong = vIndex;
+            else if (composing.jongseong !== -1) {
+                currentInput.value = currentInput.value.slice(0, -1) + composeHangul();
+                composing = { chosung: KorIndexMap[JONGSEONG[composing.jongseong]], jungseong: vIndex, jongseong: -1 };
+            } else {
+                 currentInput.value = currentInput.value.slice(0, -1) + composeHangul();
+                 composing = { chosung: 11, jungseong: vIndex, jongseong: -1 };
+            }
+        }
+        
+        // ******************************************************************************
+        // ✅ [핵심 수정]: 조합 중인 글자를 currentInput.value에 깔끔하게 반영 (이전 문제 해결)
+        // ******************************************************************************
+        if (composing.chosung !== -1) {
+            const composed = composeHangul();
+            
+            // 1. 현재 input의 마지막 글자가 조합 중인 초성이었다면, 그 초성을 지우고 완성된 글자로 대체
+            const lastChar = currentInput.value.slice(-1);
+            if (CHOSEONG.includes(lastChar) && CHOSEONG.indexOf(lastChar) === composing.chosung) {
+                 currentInput.value = currentInput.value.slice(0, -1) + composed;
+            } 
+            // 2. 현재 글자가 완성된 한글이거나 조합 중인 상태라면, 마지막 글자를 지우고 새 완성 글자로 대체
+            else if (composing.jungseong !== -1 || composing.jongseong !== -1) {
+                 // 마지막 글자가 완성형 한글이었다면, 그것을 지우고 현재 조합 중인 글자로 대체
+                 // (이 부분이 중복 입력을 일으키는 복잡한 부분이었음)
+                 // 더 안전한 방법: 마지막 글자가 한글 완성형 코드(0xAC00 ~ 0xD7A3) 범위에 있으면 삭제 후 추가
+                 const lastCharCode = currentInput.value.charCodeAt(currentInput.value.length - 1);
+                 if (lastCharCode >= 0xAC00 && lastCharCode <= 0xD7A3) {
+                      currentInput.value = currentInput.value.slice(0, -1) + composed;
+                 } else {
+                      // 마지막 글자가 완성형이 아닌 경우 (예: 공백이나 영어), 그냥 추가
+                      currentInput.value += composed;
+                 }
+            } else {
+                // 초성만 입력된 상태 (단독 자음)
+                currentInput.value += composed;
+            }
+        }
+        // ******************************************************************************
+        
+        performSearch(currentInput.value);
+    }
+    
+    function processDelete() {
+        if (composing.chosung !== -1) {
+            if (composing.jongseong !== -1) composing.jongseong = -1;
+            else if (composing.jungseong !== -1) composing.jungseong = -1;
+            else composing.chosung = -1;
+            
+            // ✅ [핵심 수정]: 마지막 글자를 지우고, 조합 중인 상태의 글자로 대체 (안정화)
+            currentInput.value = currentInput.value.slice(0, -1);
+            const composed = composeHangul();
+            if (composed) currentInput.value += composed;
+        } else if (currentInput.value.length > 0) {
+            currentInput.value = currentInput.value.slice(0, -1);
+        }
+        performSearch(currentInput.value);
+    }
+
+    // ===============================================
+
+    // 1. 입력 필드 포커스 시 커스텀 키보드 표시 (OS 키보드 방지)
+    addressInput.addEventListener('focus', function(e) {
+        this.readOnly = true; 
+        currentInput = this;
+        keyboardContainer.classList.remove('hidden');
+    });
+
+    // 2. 키보드 버튼 클릭 처리
+    document.getElementById('keyboard').addEventListener('click', function(e) {
+        const button = e.target.closest('.keyboard-key');
+        if (!button || !currentInput) return;
+
+        const char = button.getAttribute('data-char');
+        const action = button.getAttribute('data-action');
+        const type = button.getAttribute('data-type');
+        
+        if (type === 'num' || action === 'space') {
+            commitChar(button.textContent.trim());
+        } else if (char) {
+            const charName = char.toLowerCase();
+            const korChar = HangulMap[charName]?.kor;
+            
+            if (isKorean && korChar) {
+                processHangulInput(korChar);
+            } else {
+                commitChar(button.textContent.trim().toLowerCase());
+            }
+        } else if (action === 'backspace') {
+            isKorean ? processDelete() : currentInput.value = currentInput.value.slice(0, -1);
+            performSearch(currentInput.value);
+        } else if (action === 'search') {
+            keyboardContainer.classList.add('hidden');
+            currentInput.readOnly = false;
+        } else if (action === 'hide') {
+            keyboardContainer.classList.add('hidden');
+            currentInput.readOnly = false;
+        } else if (action === 'toggle') {
+            isKorean = !isKorean;
+            toggleLangButton.textContent = isKorean ? '한/A' : 'A/한';
+            composing = { chosung: -1, jungseong: -1, jongseong: -1 };
+            updateKeyboardLayout();
+        }
+    });
+
+    // 3. 키보드 레이아웃 업데이트 함수 (한영 전환)
+    function updateKeyboardLayout() {
+        keyButtons.forEach(key => {
+            const dataChar = key.getAttribute('data-char');
+            const type = key.getAttribute('data-type');
+            
+            if (dataChar && type !== 'num') {
+                const charName = dataChar.toLowerCase();
+                const displayChar = isKorean ? HangulMap[charName]?.kor || charName : charName;
+                key.textContent = displayChar;
+            }
+        });
+    }
+
+    // 초기 레이아웃 설정 (스크립트 로드 시 실행)
+    updateKeyboardLayout();
+
+    // 4. 검색 로직 (기존 함수 재사용)
+    async function performSearch(query) {
+      query = query.trim();
+      if (!query) {
+        searchResults.classList.add('hidden');
+        return;
+      }
+      try {
+        const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+        if (!res.ok) throw new Error('서버 오류');
+        const data = await res.json();
+        if (data.documents && data.documents.length > 0) {
+          renderSearchResults(data.documents.slice(0, 5));
+        } else {
+          searchResults.classList.add('hidden');
+        }
+      } catch (err) {
+        console.error('검색 실패:', err);
+        searchResults.classList.add('hidden');
+      }
+    }
+
+    // 🔹 검색 결과 표시 (기존 함수 유지)
+    function renderSearchResults(results) {
+        searchResults.innerHTML = '';
+        results.forEach((result, idx) => {
+            const item = document.createElement('div');
+            item.className = 'search-result-item';
+            item.setAttribute('role', 'option');
+            item.setAttribute('data-idx', idx);
+            item.textContent = `${result.place_name} (${result.address_name || ''})`;
+
+            item.addEventListener('click', () => {
+                addressInput.value = result.place_name;
+                searchResults.classList.add('hidden');
+                const destination = {
+                    name: result.place_name,
+                    lat: parseFloat(result.y),
+                    lng: parseFloat(result.x)
+                };
+                localStorage.setItem('destination', JSON.stringify(destination));
+                window.location.href = '/navigation.html';
+            });
+
+            searchResults.appendChild(item);
+        });
+        searchResults.classList.remove('hidden');
+    }
+
+    // 달력 로직 (기존 함수들 유지)
+    let today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+    let selectedDates = [
+      { year: 2025, month: 8, day: 6 },
+      { year: 2025, month: 8, day: 7 }
+    ];
+
+    function renderCalendar() {
+      const monthYearEl = document.getElementById('currentMonthYear');
+      const daysEl = document.getElementById('calendarDays');
+      const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+      const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      monthYearEl.innerHTML = `${currentYear}년 ${currentMonth + 1}월`;
+      daysEl.innerHTML = '';
+      for (let i = 0; i < firstDayOfMonth; i++) {
+        daysEl.innerHTML += `<div class="text-center py-2 text-sm text-gray-300"></div>`;
+      }
+      for (let day = 1; day <= lastDayOfMonth; day++) {
+        let dayClass = 'hover:bg-gray-100 rounded-lg cursor-pointer';
+        const isSelected = selectedDates.some(d => d.year === currentYear && d.month === currentMonth && d.day === day);
+        if (isSelected) dayClass = 'bg-teal-400 text-white rounded-lg';
+        daysEl.innerHTML += `<div class="text-center py-2 text-sm ${dayClass}">${day}</div>`;
+      }
+    }
+    function changeMonth(step) {
+      currentMonth += step;
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+      else if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+      renderCalendar();
+    }
+    window.onload = renderCalendar;
+  </script>
+</body>
+</html>

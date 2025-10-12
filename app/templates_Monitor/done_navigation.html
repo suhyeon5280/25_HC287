@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupilot - 산책 완료</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer;
+        }
+        
+        .btn-primary {
+            @apply bg-teal-400 hover:bg-teal-500 text-black;
+        }
+        
+        .card {
+            @apply bg-white rounded-lg shadow-sm border border-gray-200;
+        }
+        
+        .input {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400;
+        }
+
+        /* ✅ 16:9 비율 강제 및 중앙 정렬을 위한 스타일 추가 */
+        #app-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* 내용을 상단에 배치 */
+            min-height: 100vh;
+            background-color: #f9fafb; /* body 배경색과 동일 */
+        }
+        #app.aspect-16-9 {
+            width: 100vh; /* 화면 높이를 기준으로 너비 설정 */
+            max-width: 100vw; /* 화면 너비를 넘지 않도록 제한 */
+            aspect-ratio: 16 / 9; /* 16:9 비율 강제 */
+            height: auto; /* 높이는 자동으로 조절 */
+        }
+        /* 화면 너비가 16:9 컨테이너보다 작을 경우를 대비하여 너비/높이 조정 */
+        @media (orientation: landscape) and (max-aspect-ratio: 16/9) {
+            #app.aspect-16-9 {
+                width: 100vw;
+                height: auto;
+                max-height: calc(100vw * 9 / 16);
+                min-height: calc(100vw * 9 / 16);
+            }
+        }
+        @media (orientation: portrait), (min-aspect-ratio: 16/9) {
+            #app.aspect-16-9 {
+                height: 100vh;
+                width: auto;
+                max-width: calc(100vh * 16 / 9);
+                min-width: calc(100vh * 16 / 9);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app-container">
+        <div id="app" class="bg-white min-h-screen aspect-16-9">
+            <div class="p-4 pb-20">
+                <div class="space-y-6">
+                    <div class="text-center mb-8">
+                        <svg class="w-16 h-16 mx-auto text-teal-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h1 class="text-2xl font-bold mb-1">산책 완료!</h1>
+                        <p class="text-gray-600">오늘의 산책이 성공적으로 기록되었습니다.</p>
+                    </div>
+
+                    <div class="card p-6 space-y-4">
+                        <div class="text-center">
+                            <p class="text-sm text-gray-500">산책 시간</p>
+                            <p class="text-3xl font-extrabold text-teal-600">01:30:15</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center border-t pt-4">
+                            <div>
+                                <p class="text-sm text-gray-500">거리</p>
+                                <p class="text-xl font-bold">4.5 km</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">칼로리</p>
+                                <p class="text-xl font-bold">250 kcal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 space-y-4">
+                        <h2 class="text-lg font-bold mb-2">오늘의 주요 기록</h2>
+                        
+                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🏃</span>
+                                <div>
+                                    <div class="font-medium">활동량</div>
+                                    <div class="text-sm text-gray-600">활발함</div>
+                                </div>
+                            </div>
+                            <div class="text-lg font-bold text-blue-600">88%</div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">❤️</span>
+                                <div>
+                                    <div class="font-medium">건강 지표</div>
+                                    <div class="text-sm text-gray-600">양호</div>
+                                </div>
+                            </div>
+                            <div class="text-lg font-bold text-yellow-600">92%</div>
+                        </div>
+                    </div>
+
+                    <a href="home.html" class="w-full bg-teal-400 hover:bg-teal-500 text-black rounded-full py-3 font-medium text-center block">
+                        홈으로 돌아가기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

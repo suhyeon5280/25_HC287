@@ -1,0 +1,16 @@
+/home/tim3145/espers2_ws/install/arduino_bridge/lib/arduino_bridge/arduino_bridge.py
+/home/tim3145/espers2_ws/install/arduino_bridge/share/ament_index/resource_index/package_run_dependencies/arduino_bridge
+/home/tim3145/espers2_ws/install/arduino_bridge/share/ament_index/resource_index/parent_prefix_path/arduino_bridge
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/environment/ament_prefix_path.sh
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/environment/ament_prefix_path.dsv
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/environment/path.sh
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/environment/path.dsv
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/local_setup.bash
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/local_setup.sh
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/local_setup.zsh
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/local_setup.dsv
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.dsv
+/home/tim3145/espers2_ws/install/arduino_bridge/share/ament_index/resource_index/packages/arduino_bridge
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/cmake/arduino_bridgeConfig.cmake
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/cmake/arduino_bridgeConfig-version.cmake
+/home/tim3145/espers2_ws/install/arduino_bridge/share/arduino_bridge/package.xml

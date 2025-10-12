@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupilot - 산책 완료</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer;
+        }
+        
+        .btn-primary {
+            @apply bg-teal-400 hover:bg-teal-500 text-black;
+        }
+        
+        .card {
+            @apply bg-white rounded-lg shadow-sm border border-gray-200;
+        }
+        
+        .input {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app" class="max-w-md mx-auto bg-white min-h-screen">
+        <div class="p-4 pb-20">
+            <div class="space-y-6">
+                <div class="bg-teal-400 rounded-2xl p-6 text-center">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pupilot-logo-9jkjboTGvHXXxkQFDbjqxEAdNTI4e0.png" alt="Pupilot" class="h-12 mx-auto mb-4" />
+                    <div class="w-full bg-white text-black rounded-full py-3 font-medium">산책 완료!</div>
+                </div>
+
+                <div class="card p-4">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-lg">📊</span>
+                        <h2 class="font-semibold">헬스케어 리포트</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold text-teal-600">3,000</div>
+                            <div class="text-sm text-gray-600">걸음 수</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold text-teal-600">150</div>
+                            <div class="text-sm text-gray-600">칼로리 (kcal)</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold text-teal-600">45분</div>
+                            <div class="text-sm text-gray-600">산책 시간</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold text-teal-600">2.1km</div>
+                            <div class="text-sm text-gray-600">이동 거리</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-4">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-lg">🐕</span>
+                        <h2 class="font-semibold">강아지 분석 리포트</h2>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">😊</span>
+                                <div>
+                                    <div class="font-medium">기분 상태</div>
+                                    <div class="text-sm text-gray-600">매우 좋음</div>
+                                </div>
+                            </div>
+                            <div class="text-lg font-bold text-green-600">95%</div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">🏃</span>
+                                <div>
+                                    <div class="font-medium">활동량</div>
+                                    <div class="text-sm text-gray-600">활발함</div>
+                                </div>
+                            </div>
+                            <div class="text-lg font-bold text-blue-600">88%</div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg">❤️</span>
+                                <div>
+                                    <div class="font-medium">건강 지표</div>
+                                    <div class="text-sm text-gray-600">양호</div>
+                                </div>
+                            </div>
+                            <div class="text-lg font-bold text-yellow-600">92%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="home.html" class="w-full bg-teal-400 hover:bg-teal-500 text-black rounded-full py-3 font-medium text-center block">
+                    홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

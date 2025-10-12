@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask Kakao Places Example</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* 기존 CSS 스타일 유지 */
+body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 0; margin: 0; }
+.search-container { max-width: 400px; margin: 0 auto; position: relative; }
+.search-input { width: 100%; padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #ccc; }
+.search-results { position: absolute; top: 100%; left: 0; right: 0;
+                  background: white; border: 1px solid #ddd; border-top: none;
+                  max-height: 200px; overflow-y: auto; z-index: 10; display: none; }
+.search-result-item { padding: 0.5rem 1rem; cursor: pointer; border-bottom: 1px solid #eee; }
+.search-result-item:hover { background: #f7fafc; }
+
+/* ✅ 16:9 비율 강제 및 중앙 정렬을 위한 스타일 추가 */
+#app-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 내용을 상단에 배치 */
+    min-height: 100vh;
+    background-color: #f0f0f0; /* body 배경색과 동일 */
+}
+#app-16-9 {
+    background: white; /* 16:9 컨테이너의 배경색 */
+    padding: 2rem;
+    width: 100vh; /* 화면 높이를 기준으로 너비 설정 */
+    max-width: 100vw; /* 화면 너비를 넘지 않도록 제한 */
+    aspect-ratio: 16 / 9; /* 16:9 비율 강제 */
+    height: auto; /* 높이는 자동으로 조절 */
+    overflow-y: auto; /* 내용이 넘치면 스크롤되도록 설정 */
+}
+
+/* 화면 비율 조정 */
+@media (orientation: landscape) and (max-aspect-ratio: 16/9) {
+    #app-16-9 {
+        width: 100vw;
+        height: auto;
+        max-height: calc(100vw * 9 / 16);
+        min-height: calc(100vw * 9 / 16);
+    }
+}
+@media (orientation: portrait), (min-aspect-ratio: 16/9) {
+    #app-16-9 {
+        height: 100vh;
+        width: auto;
+        max-width: calc(100vh * 16 / 9);
+        min-width: calc(100vh * 16 / 9);
+    }
+}
+</style>
+</head>
+<body>
+<div id="app-container">
+    <div id="app-16-9">
+
+        <h1 class="text-center mb-4">Flask + Kakao REST API</h1>
+
+        <div class="search-container">
+            <input type="text" id="addressInput" class="search-input" placeholder="목적지를 검색하세요">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+const addressInput = document.getElementById('addressInput');
+const searchResults = document.getElementById('searchResults');
+
+async function performSearch(query) {
+    query = query.trim();
+    if (!query) {
+        searchResults.style.display = 'none';
+        return;
+    }
+
+    try {
+        const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        renderSearchResults(data);
+    } catch (err) {
+        console.error('검색 오류:', err);
+        searchResults.style.display = 'none';
+    }
+}
+
+function renderSearchResults(results) {
+    searchResults.innerHTML = '';
+    if (!results.length) {
+        searchResults.style.display = 'none';
+        return;
+    }
+
+    results.forEach(r => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        item.textContent = r.place_name + (r.address_name ? ` (${r.address_name})` : '');
+        item.addEventListener('click', () => {
+            addressInput.value = r.place_name;
+            searchResults.style.display = 'none';
+            const destination = { name: r.place_name, lat: parseFloat(r.y), lng: parseFloat(r.x) };
+            localStorage.setItem('destination', JSON.stringify(destination));
+            console.log('선택된 목적지 저장:', destination);
+            // ✅ index.html에서 목적지 설정 후 home.html로 이동하도록 로직 추가
+            window.location.href = 'home.html';
+        });
+        searchResults.appendChild(item);
+    });
+    searchResults.style.display = 'block';
+}
+
+addressInput.addEventListener('input', (e) => performSearch(e.target.value));
+addressInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(e.target.value); });
+document.addEventListener('click', (e) => {
+    if (!addressInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = 'none';
+    }
+});
+</script>
+
+</body>
+</html>

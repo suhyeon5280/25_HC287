@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pupilot - 산책 중</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .animate-ping { animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:.5;} }
+    @keyframes ping { 75%,100%{ transform:scale(2); opacity:0; } }
+    .btn { @apply px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer; }
+    .btn-primary { @apply bg-teal-400 hover:bg-teal-500 text-black; }
+    .card { @apply bg-white rounded-lg shadow-sm border border-gray-200; }
+    .input { @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400; }
+    
+    /* ✅ 16:9 비율 강제 및 중앙 정렬을 위한 스타일 추가 */
+    #app-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* 내용을 상단에 배치 */
+        min-height: 100vh;
+        background-color: #f9fafb; /* body 배경색과 동일 */
+    }
+    #app.aspect-16-9 {
+        width: 100vh; /* 화면 높이를 기준으로 너비 설정 */
+        max-width: 100vw; /* 화면 너비를 넘지 않도록 제한 */
+        aspect-ratio: 16 / 9; /* 16:9 비율 강제 */
+        height: auto; /* 높이는 자동으로 조절 */
+    }
+    /* 화면 너비가 16:9 컨테이너보다 작을 경우를 대비하여 너비/높이 조정 */
+    @media (orientation: landscape) and (max-aspect-ratio: 16/9) {
+        #app.aspect-16-9 {
+            width: 100vw;
+            height: auto;
+            max-height: calc(100vw * 9 / 16);
+            min-height: calc(100vw * 9 / 16);
+        }
+    }
+    @media (orientation: portrait), (min-aspect-ratio: 16/9) {
+        #app.aspect-16-9 {
+            height: 100vh;
+            width: auto;
+            max-width: calc(100vh * 16 / 9);
+            min-width: calc(100vh * 16 / 9);
+        }
+    }
+  </style>
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=79380868f9e358ecd1118731747ff6a1&libraries=services,drawing"></script>
+</head>
+<body class="bg-gray-50">
+  <div id="app-container">
+    <div id="app" class="bg-white min-h-screen aspect-16-9">
+      <div class="p-4 pb-20">
+        <div class="space-y-6">
+          <div class="bg-teal-400 rounded-2xl p-6 text-center">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pupilot-logo-9jkjboTGvHXXxkQFQFDbjqxEAdNTI4e0.png" alt="Pupilot" class="h-12 mx-auto mb-4" />
+            <div id="destinationName" class="w-full bg-white text-black rounded-full py-3 font-medium">
+              목적지: 불러오는 중...
+            </div>
+          </div>
+
+          <div class="card p-4">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-lg">🗺️</span>
+              <h2 class="font-semibold">실시간 위치</h2>
+            </div>
+            <div id="map" class="w-full h-64 rounded-lg border"></div>
+          </div>
+
+          <div class="card p-4">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-lg">📹</span>
+              <h2 class="font-semibold">실시간 로봇 시야</h2>
+            </div>
+            <div id="robot-vision" class="w-full h-64 rounded-lg border overflow-hidden flex items-center justify-center">
+              <img src="http://127.0.0.1:5001/emotion_with_video_feed" class="w-full h-full object-contain" alt="실시간 로봇 시야" />
+            </div>
+            
+            <div class="flex justify-around mt-4 pt-4 border-t border-gray-100">
+                <div class="text-center p-2 rounded-lg bg-red-50">
+                    <span class="text-2xl">❤️</span>
+                    <p class="text-xs font-medium text-red-600 mt-1">건강해요!</p>
+                </div>
+                <div class="text-center p-2 rounded-lg bg-green-50">
+                    <span class="text-2xl">😊</span>
+                    <p class="text-xs font-medium text-green-600 mt-1">기분 좋음</p>
+                </div>
+                <div class="text-center p-2 rounded-lg bg-blue-50">
+                    <span class="text-2xl">🏃</span>
+                    <p class="text-xs font-medium text-blue-600 mt-1">활동적</p>
+                </div>
+            </div>
+
+          </div>
+          
+          <div class="card bg-blue-50 border-blue-200 p-4">
+            <div class="border-l-4 border-blue-400 pl-4">
+              <p class="font-medium">산책 중입니다 🚶‍♂️</p>
+              <p class="text-sm text-gray-600">도착지까지 경로가 지도에 표시됩니다.</p>
+            </div>
+          </div>
+
+          <a href="/done_navigation.html" class="w-full bg-teal-400 hover:bg-teal-500 text-black rounded-full py-3 font-medium text-center block">
+            산책종료
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let destination = null;
+    try {
+      destination = JSON.parse(localStorage.getItem("destination"));
+    } catch (e) {
+      console.error("destination 불러오기 실패:", e);
+    }
+
+    const destNameEl = document.getElementById("destinationName");
+    if (destination && destination.name) {
+      destNameEl.textContent = `목적지: ${destination.name}`;
+    } else {
+      destNameEl.textContent = "목적지가 설정되지 않았습니다.";
+    }
+
+    // ✅ 카카오맵 초기화 및 길찾기 API 연동
+    async function initMap() {
+      if (!destination || !destination.lat || !destination.lng) {
+        console.error("목적지 정보 없음");
+        return;
+      }
+      
+      const mapContainer = document.getElementById('map');
+      const mapOption = {
+        center: new kakao.maps.LatLng(destination.lat, destination.lng),
+        level: 5
+      };
+      const map = new kakao.maps.Map(mapContainer, mapOption);
+
+      // 출발지 마커
+      const startPos = new kakao.maps.LatLng(37.631943, 127.076886);
+      const startMarker = new kakao.maps.Marker({
+        map: map,
+        position: startPos,
+        title: "서울과학기술대학교"
+      });
+
+      // 목적지 마커
+      const destPos = new kakao.maps.LatLng(destination.lat, destination.lng);
+      const destMarker = new kakao.maps.Marker({
+        map: map,
+        position: destPos,
+        title: destination.name
+      });
+      
+      try {
+        // ✅ Flask 서버의 길찾기 라우트 호출
+        const res = await fetch(`/route?end_x=${destination.lng}&end_y=${destination.lat}`);
+        if (!res.ok) throw new Error('서버 길찾기 오류');
+        const data = await res.json();
+        
+        // 경로 데이터를 파싱하여 지도에 표시
+        if (data.routes && data.routes.length > 0) {
+          const route = data.routes[0];
+          const lines = [];
+          route.sections.forEach(section => {
+            section.roads.forEach(road => {
+              for (let i = 0; i < road.vertexes.length; i += 2) {
+                const lng = road.vertexes[i];
+                const lat = road.vertexes[i+1];
+                lines.push(new kakao.maps.LatLng(lat, lng));
+              }
+            });
+          });
+
+          const polyline = new kakao.maps.Polyline({
+            path: lines,
+            strokeWeight: 5,
+            strokeColor: '#00BFFF',
+            strokeOpacity: 0.8,
+            strokeStyle: 'solid'
+          });
+          polyline.setMap(map);
+
+          // 경로 전체가 보이도록 지도 범위 조정
+          const bounds = new kakao.maps.LatLngBounds();
+          lines.forEach(point => bounds.extend(point));
+          map.setBounds(bounds);
+        } else {
+          console.error("길찾기 경로 정보가 없습니다.");
+        }
+      } catch (err) {
+        console.error("길찾기 데이터 가져오기 실패:", err);
+      }
+    }
+
+    kakao.maps.load(initMap);
+  </script>
+</body>
+</html>

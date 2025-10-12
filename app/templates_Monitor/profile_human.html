@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupilot - 프로필 편집</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer;
+        }
+        
+        .btn-primary {
+            @apply bg-teal-400 hover:bg-teal-500 text-black;
+        }
+        
+        .card {
+            @apply bg-white rounded-lg shadow-sm border border-gray-200;
+        }
+        
+        .input {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400;
+        }
+
+        /* ✅ 16:9 비율 강제 및 중앙 정렬을 위한 스타일 추가 */
+        #app-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* 내용을 상단에 배치 */
+            min-height: 100vh;
+            background-color: #f9fafb; /* body 배경색과 동일 */
+        }
+        #app.aspect-16-9 {
+            width: 100vh; /* 화면 높이를 기준으로 너비 설정 */
+            max-width: 100vw; /* 화면 너비를 넘지 않도록 제한 */
+            aspect-ratio: 16 / 9; /* 16:9 비율 강제 */
+            height: auto; /* 높이는 자동으로 조절 */
+        }
+        /* 화면 너비가 16:9 컨테이너보다 작을 경우를 대비하여 너비/높이 조정 */
+        @media (orientation: landscape) and (max-aspect-ratio: 16/9) {
+            #app.aspect-16-9 {
+                width: 100vw;
+                height: auto;
+                max-height: calc(100vw * 9 / 16);
+                min-height: calc(100vw * 9 / 16);
+            }
+        }
+        @media (orientation: portrait), (min-aspect-ratio: 16/9) {
+            #app.aspect-16-9 {
+                height: 100vh;
+                width: auto;
+                max-width: calc(100vh * 16 / 9);
+                min-width: calc(100vh * 16 / 9);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- ✅ 16:9 비율을 유지하고 중앙에 배치하기 위한 컨테이너 추가 -->
+    <div id="app-container">
+        <!-- ✅ max-w-md mx-auto 제거 및 aspect-16-9 클래스 추가 -->
+        <div id="app" class="bg-white min-h-screen aspect-16-9">
+            <div class="p-4 pb-20">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4 mb-6">
+                        <a href="profile.html" class="p-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </a>
+                        <h1 class="text-xl font-semibold">프로필 편집</h1>
+                    </div>
+
+                    <div class="card p-6 space-y-4">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto mb-4 bg-teal-400 rounded-full flex items-center justify-center text-white text-2xl font-semibold">김</div>
+                            <button class="border border-gray-300 rounded-lg px-3 py-1 text-sm">사진 변경</button>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">이름</label>
+                            <input value="김민혁" class="input" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">이메일</label>
+                            <input value="pupilot@example.com" class="input" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">전화번호</label>
+                            <input placeholder="전화번호를 입력하세요" class="input" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">생년월일</label>
+                            <input type="date" class="input" />
+                        </div>
+
+                        <a href="profile.html" class="w-full bg-teal-400 hover:bg-teal-500 text-black rounded-full py-3 font-medium text-center block">
+                            저장하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
