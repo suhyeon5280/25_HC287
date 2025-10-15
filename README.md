@@ -57,7 +57,7 @@
 ---
 ## **💡4. 작품 소개영상**
 
-[![2025년 한이음 드림업 공모전] [25_HC287] 인공지능 자율주행 기반의 스마트 유모차 로봇 개발]([https://youtu.be/YcD3Lbn2FRI?si=isERqIAT9Aqvdqwp](https://www.youtube.com/watch?v=Nd-ArHrq8iM)
+[![2025년 한이음 드림업 공모전] [25_HC287] 인공지능 자율주행 기반의 스마트 유모차 로봇 개발] [<img width="2558" height="1427" alt="Image" src="https://github.com/user-attachments/assets/c548f117-3aa6-4840-814d-241dcf2a78cc" />](https://www.youtube.com/watch?v=Nd-ArHrq8iM)
 
 ---
 ## **💡5. 핵심 소스코드**
