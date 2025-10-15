@@ -55,7 +55,7 @@
 
 
 - 제어 흐름도
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/76e3347b-6d94-491e-8aeb-a7b4601c54d5" />
+<img width="1662" height="551" alt="Image" src="https://github.com/user-attachments/assets/a1916fc3-f977-4563-bb29-8cc979775044" />
 
 ---
 ## **4. 작품 소개영상**
