@@ -40,19 +40,20 @@
 
 ---
 ## **2. 팀원 소개**
-| <img width="80" height="100" src="https://github.com/user-attachments/assets/ab73bb1c-c1d4-464d-8ad3-635b45d5a8ae" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c7f66b7c-ab84-41fa-8fba-b49dba28b677" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c33252c7-3bf6-43cf-beaa-a9e2d9bd090b" > |
-|:---:|:---:|:---:|
+
+
 | **김수현** | **김기현** | **류성훈** |
-| • 강아지 감정 분석 모델 개발 <br> • 전용 애플리케이션 개발 <br> • 3D SLAM | • 유모차 전자부품 연결부 설계 <br> • 유모차 외장 설계 <br> • 회로 제작 | • 나 뭐했더라 <br> • 모르겠당 |
+|:---:|:---:|:---:|
+| • 강아지 감정 분석 모델 개발 <br> • 전용 애플리케이션 개발 <br> • 3D SLAM | • 유모차 전자부품 연결부 설계 <br> • 유모차 외장 설계 <br> • 회로 제작 | • 다중 센서 융합 기반 경로추종 <br> • ROS2 기반 자율주행  <br> • 2D SLAM <br> |
 
 ---
 ## **3. 시스템 구성도**
-> **(참고)** S/W구성도, H/W구성도, 서비스 흐름도 등을 작성합니다. 시스템의 동작 과정 등을 추가할 수도 있습니다.
+
 - 서비스 구성도
 <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/28fc8453-d1a0-4184-8fd0-130d93d18545" />
 
 
-- 엔티티 관계도
+- 제어 흐름도
 <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/76e3347b-6d94-491e-8aeb-a7b4601c54d5" />
 
 ---
