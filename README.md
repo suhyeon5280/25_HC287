@@ -1,4 +1,4 @@
-![Logo](readme/logo.png)
+![Logo](<img width="672" height="647" alt="Image" src="https://github.com/user-attachments/assets/4b94c81e-fb31-4ce5-a0a3-2b706d18fe3b" />)
 ## **PUPILOT**
 
 ---
