@@ -51,7 +51,7 @@
 ## **3. 시스템 구성도**
 
 - 서비스 구성도
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/28fc8453-d1a0-4184-8fd0-130d93d18545" />
+<img width="699" height="330" alt="Image" src="https://github.com/user-attachments/assets/01b3b7b7-a57b-444b-9afb-d376bf3b2619" />
 
 
 - 제어 흐름도
