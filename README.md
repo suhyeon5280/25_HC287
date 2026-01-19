@@ -85,7 +85,7 @@ class PathPublisher(Node):
 app = Flask(__name__)
 
 # Kakao REST API 키 (반드시 REST API Key)
-KAKAO_REST_KEY = '2b039dd4f2eab27eb1e047ef5f56d5d9'
+KAKAO_REST_KEY = ''
 
 # 모든 HTML 파일을 위한 라우트 추가
 @app.route('/')
@@ -205,7 +205,7 @@ def get_route():
 
 if __name__ == '__main__':
     rclpy.init(args=None)
-    # ✅ use_reloader=False 옵션 추가
+    # use_reloader=False 옵션 추가
     app.run(debug=True, use_reloader=False)
 
 
@@ -228,7 +228,7 @@ class PathPublisher(Node):
 app = Flask(__name__)
 
 # Kakao REST API 키 (반드시 REST API Key)
-KAKAO_REST_KEY = '2b039dd4f2eab27eb1e047ef5f56d5d9'
+KAKAO_REST_KEY = ''
 
 # 모든 HTML 파일을 위한 라우트 추가
 @app.route('/')
@@ -286,7 +286,7 @@ def search():
     else:
         return jsonify({"documents": []}), resp.status_code
 
-# ✅ 길찾기 기능 및 ROS 2 통신 라우트
+# 길찾기 기능 및 ROS 2 통신 라우트
 @app.route('/route')
 def get_route():
     start_x = "127.076886" 
@@ -348,7 +348,7 @@ def get_route():
 
 if __name__ == '__main__':
     rclpy.init(args=None)
-    # ✅ use_reloader=False 옵션 추가
+    # use_reloader=False 옵션 추가
     app.run(debug=True, use_reloader=False)
 
 camera_server
@@ -363,8 +363,8 @@ from PIL import ImageFont, ImageDraw, Image
 app = Flask(__name__)
 
 # ONNX 모델 로드
-# ✅ dog_emotion_prior.onnx 모델 파일을 로드합니다.
-# 모델 파일의 경로는 camera_server.py와 같은 위치에 있어야 합니다.
+# dog_emotion_prior.onnx 모델 파일을 로드
+# 모델 파일의 경로는 camera_server.py와 같은 위치에 있어야 함
 try:
     # ONNX Runtime 세션 생성 (CPU 실행 프로바이더만 사용)
     session = ort.InferenceSession("dog_emotion_prior.onnx", 
@@ -384,10 +384,10 @@ camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 # 감정 레이블 (모델의 출력 순서에 맞게 수정)
 EMOTION_LABELS = ['angry', 'happy', 'relax', 'sad']
 
-# ✅ 한글 폰트 로드
+# 한글 폰트 로드
 # 시스템에 설치된 한글 폰트 파일 경로로 변경해야 합니다.
 # 예: 나눔고딕 (보통 /usr/share/fonts/truetype/nanum/NanumGothic.ttf)
-# 아래 경로는 예시이며, 실제 폰트 파일 경로를 확인해주세요.
+# 아래 경로는 예시이며, 실제 폰트 파일 경로를 확인해주세요!
 font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 try:
     font = ImageFont.truetype(font_path, 20)
@@ -443,15 +443,15 @@ def emotion_with_video_feed():
                 emotion = analyze_emotion(frame)
                 last_analysis_time = current_time
 
-            # ✅ OpenCV 이미지(numpy.ndarray)를 PIL 이미지로 변환
+            # OpenCV 이미지(numpy.ndarray)를 PIL 이미지로 변환
             pil_image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
             draw = ImageDraw.Draw(pil_image)
             
-            # ✅ PIL을 사용하여 한글 텍스트를 그립니다.
+            # PIL을 사용하여 한글 텍스트를 그립니다.
             # 폰트 색상(RGB)과 위치를 지정합니다.
             draw.text((10, 30), f"{emotion}", font=font, fill=(0, 255, 0))
 
-            # ✅ PIL 이미지를 다시 OpenCV 이미지(numpy.ndarray)로 변환
+            # PIL 이미지를 다시 OpenCV 이미지(numpy.ndarray)로 변환
             frame = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
 
             ret, buffer = cv2.imencode('.jpg', frame)
