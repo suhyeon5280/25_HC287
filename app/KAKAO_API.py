@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-KAKAO_API_KEY = "2b039dd4f2eab27eb1e047ef5f56d5d9"
+KAKAO_API_KEY = "" #api keyy 넣기
 
 @app.route("/")
 def home():
